@@ -1,4 +1,4 @@
-package Shared
+package shared
 
 const (
 	OK       = "OK"
