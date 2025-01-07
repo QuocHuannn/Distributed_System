@@ -1,8 +1,7 @@
 package main
 
 import (
-	kvs "Lab01/Shared"
-
+	kvs "Golang/Lab01/Shared"
 	"fmt"
 	"log"
 	"net/rpc"
