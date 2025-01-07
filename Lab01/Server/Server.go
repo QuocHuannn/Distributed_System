@@ -7,7 +7,7 @@ import (
 	"net/rpc"
 	"sync"
 
-	kvs "Golang/Lab01/Shared"
+	kvs "Lab01/Shared"
 )
 
 type KV struct {
