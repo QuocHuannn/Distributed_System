@@ -1,6 +1,6 @@
 package shared
 
-type ServerInfo struct {
+type Server struct {
 	ID        int
 	Address   string
 	IsPrimary bool

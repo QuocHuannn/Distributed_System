@@ -92,10 +92,41 @@ func (c *Client) get(key string) (string, error) {
 	return "", fmt.Errorf("no server available")
 }
 
+func (c *Client) checkServerStatus() {
+	fmt.Println("\n=== Server Status ===")
+	for _, addr := range c.servers {
+		client, err := rpc.Dial("tcp", addr)
+		if err != nil {
+			fmt.Printf("Server %s: Unreachable\n", addr)
+			continue
+		}
+		defer client.Close()
+
+		args := &shared.StatusArgs{}
+		reply := &shared.StatusReply{}
+
+		err = client.Call("KV.GetStatus", args, reply)
+		if err != nil {
+			fmt.Printf("Server %s: Error getting status\n", addr)
+			continue
+		}
+
+		role := "Backup"
+		if reply.IsPrimary {
+			role = "Primary"
+		}
+		fmt.Printf("Server %d (%s): %s\n", reply.ServerID, reply.Address, role)
+	}
+	fmt.Println("==================\n")
+}
+
 func main() {
 	client := &Client{
 		servers: []string{":1234", ":1235", ":1236"},
 	}
+
+	// Check initial status
+	client.checkServerStatus()
 
 	key := "24C11058-NGUYEN_THIEN_PHUC"
 	var wg sync.WaitGroup
@@ -125,4 +156,7 @@ func main() {
 			fmt.Printf("[C] Got %s = %s from %s\n", key, value, addr)
 		}
 	}
+
+	// Check status after operations
+	client.checkServerStatus()
 }

@@ -1,11 +1,13 @@
 # Lab 02 - Distributed Key-Value Store with Replication
 
-Hệ thống **Key-Value Store** với cơ chế **Primary-Backup Replication** và **Bully Algorithm** cho **Leader Election**.
+Hệ thống **Key-Value Store** với cơ chế **Primary-Backup Replication** và hai thuật toán bầu cử leader: **Bully Algorithm** và **Ring Election**.
 
 ## Tính năng
 
 - **Primary-Backup Replication**
-- **Automatic Leader Election** sử dụng **Bully Algorithm**
+- **Automatic Leader Election** với hai lựa chọn:
+  - **Bully Algorithm**
+  - **Ring Election**
 - **Sequential Consistency** với **timestamp**
 - Tự động phục hồi khi **Primary** fails
 - **Client** tự động phát hiện **Primary server**
@@ -49,7 +51,7 @@ go run Client/Client.go
 - Dữ liệu được **replicate** sang các **backup**.
 - **GET** từ bất kỳ server nào cũng trả về giá trị mới nhất.
 
-### TC02: Primary Failure
+### TC02: Primary Failure và Leader Election
 
 1. Chạy cả 3 server.
 2. Tắt **primary server** (Ctrl+C trên terminal của server ID 1).
@@ -57,9 +59,12 @@ go run Client/Client.go
 4. Thực hiện **PUT/GET** mới.
 
 **Kết quả mong đợi**:
-- Hệ thống tự động bầu **primary** mới.
-- **Client** tự động kết nối đến **primary** mới.
-- Các thao tác **PUT/GET** vẫn hoạt động bình thường.
+- Hệ thống tự động bầu **primary** mới sử dụng Ring Election:
+  - Message được truyền theo vòng tròn qua các server
+  - Server có ID thấp nhất sẽ được chọn làm primary
+  - Kết quả election được broadcast đến tất cả server
+- **Client** tự động kết nối đến **primary** mới
+- Các thao tác **PUT/GET** vẫn hoạt động bình thường
 
 ### TC03: Sequential Consistency
 
@@ -92,8 +97,27 @@ go run Client/Client.go
 - **Election logs** cho biết quá trình bầu cử.
 - **Client logs** hiển thị kết quả của các thao tác **PUT/GET**.
 
+## Implementation Details
+
+### Leader Election
+
+Hệ thống hỗ trợ hai thuật toán leader election:
+
+1. **Bully Algorithm**:
+   - Server với ID cao hơn sẽ "bắt nạt" các server có ID thấp hơn
+   - Độ phức tạp message: O(n²)
+   - Thích hợp cho hệ thống nhỏ với tần suất failure thấp
+
+2. **Ring Election**:
+   - Các server được sắp xếp theo vòng tròn logic
+   - Message election được truyền theo một chiều
+   - Độ phức tạp message: O(n)
+   - Phân phối tải đồng đều hơn
+   - Thích hợp cho hệ thống lớn hoặc có nhiều failure
+
 ## Giới hạn
 
 - Chưa có **persistent storage**.
 - Chưa có cơ chế **recovery** khi toàn bộ hệ thống crash.
 - Chưa có cơ chế xử lý **partition tolerance** đầy đủ.
+- Ring Election có thể bị block nếu có server fail trong quá trình election
