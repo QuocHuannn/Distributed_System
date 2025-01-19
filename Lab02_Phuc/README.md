@@ -1,4 +1,4 @@
-# Lab02: Lab 02 - Distributed Key-Value Store with Replication
+# Lab02: Distributed Key-Value Store with Replication
 
 ## Giới Thiệu
 
