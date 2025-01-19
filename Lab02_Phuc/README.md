@@ -1,99 +1,70 @@
-# Lab 02 - Distributed Key-Value Store with Replication
+# Lab02: Lab 02 - Distributed Key-Value Store with Replication
 
-Hệ thống **Key-Value Store** với cơ chế **Primary-Backup Replication** và **Bully Algorithm** cho **Leader Election**.
+## Giới Thiệu
 
-## Tính năng
+Dự án này triển khai một hệ thống lưu trữ key-value phân tán, có khả năng:
+- Sao lưu dữ liệu trên nhiều server để đảm bảo tính sẵn sàng cao.
+- Sử dụng thuật toán Bully để bầu chọn leader trong trường hợp lỗi xảy ra.
+- Hỗ trợ các thao tác cơ bản: PUT, GET, và đồng bộ dữ liệu giữa các server.
 
-- **Primary-Backup Replication**
-- **Automatic Leader Election** sử dụng **Bully Algorithm**
-- **Sequential Consistency** với **timestamp**
-- Tự động phục hồi khi **Primary** fails
-- **Client** tự động phát hiện **Primary server**
+## Cấu Trúc Dự Án
 
-## Cách chạy
+Dự án bao gồm ba thành phần chính:
 
-### 1. Khởi động các Server
+1. **Client.go**:
+    - Gửi yêu cầu PUT và GET tới server chính (primary server).
+    - Tự động phát hiện server chính nếu server hiện tại không phản hồi.
+    - Xác thực dữ liệu đã được sao lưu trên tất cả các server.
 
-Mở 3 terminal riêng biệt và chạy các lệnh sau:
+2. **Server.go**:
+    - Xử lý các yêu cầu PUT và GET từ client.
+    - Đồng bộ hóa dữ liệu tới các server sao lưu.
+    - Tự động bầu chọn leader mới nếu server chính gặp lỗi.
 
-- **Terminal 1 (Primary Server)**: 
-  ```bash
-  go run Server/Server.go -id 1 -port 1234
-  ```
-- **Terminal 2 (Backup Server 1)**: 
-  ```bash
-  go run Server/Server.go -id 2 -port 1235
-  ```
-- **Terminal 3 (Backup Server 2)**: 
-  ```bash
-  go run Server/Server.go -id 3 -port 1236
-  ```
+3. **types.go**:
+    - Định nghĩa các kiểu dữ liệu và mã lỗi dùng chung cho client và server.
 
-### 2. Khởi động Client
+## Cách Chạy
 
-Mở terminal mới và chạy: 
+### 1. Khởi Chạy Server
+Server có thể được chạy bằng cách sử dụng 3 cổng port mặc định là `1234`, `1235` và `1236`. Ví dụ:
 ```bash
-go run Client/Client.go
+go run Server.go -id=1 -port=1234
+go run Server.go -id=2 -port=1235
+go run Server.go -id=3 -port=1236
 ```
 
-## Test Cases
+### 2. Khởi Chạy Client
+```bash
+go run Client.go
+```
 
-### TC01: PUT/GET to/from the primary, GET from backup
+### 3. Tình Huống Mô Phỏng
+- TC01: PUT/GET khi tất cả các server đang hoạt động.
 
-1. Chạy cả 3 server như hướng dẫn trên.
-2. Chạy client để thực hiện **PUT**.
-3. Kiểm tra giá trị trên cả **primary** và **backup servers**.
+- TC02: Mô phỏng lỗi server chính, chờ bầu chọn leader mới, và thực hiện PUT/GET
 
-**Kết quả mong đợi**:
-- **PUT** thành công trên **primary**.
-- Dữ liệu được **replicate** sang các **backup**.
-- **GET** từ bất kỳ server nào cũng trả về giá trị mới nhất.
+## Hệ thống hỗ trợ
 
-### TC02: Primary Failure
+### Thuật toán Bully
 
-1. Chạy cả 3 server.
-2. Tắt **primary server** (Ctrl+C trên terminal của server ID 1).
-3. Chờ khoảng 2-3 giây cho quá trình bầu cử.
-4. Thực hiện **PUT/GET** mới.
+Hệ thống sử dụng thuật toán Bully để bầu chọn leader:
 
-**Kết quả mong đợi**:
-- Hệ thống tự động bầu **primary** mới.
-- **Client** tự động kết nối đến **primary** mới.
-- Các thao tác **PUT/GET** vẫn hoạt động bình thường.
+- Server có ID cao nhất được chọn làm leader.
+- Khi phát hiện leader bị lỗi, server sẽ tự động gửi yêu cầu bầu chọn.
+- Nếu không có phản hồi từ server có ID cao hơn, server hiện tại sẽ trở thành leader.
+- Leader mới thông báo đến tất cả các server còn lại.
 
-### TC03: Sequential Consistency
+### Cơ chế heartbeat
+Cơ chế heartbeat giúp theo dõi trạng thái của leader và phát hiện khi leader gặp lỗi:
 
-1. Chạy các server.
-2. Chạy nhiều **client** đồng thời.
-3. Thực hiện nhiều **PUT** cùng lúc.
+#### 1. Cách Hoạt Động
+- Leader (Primary Server) gửi tín hiệu heartbeat đến các server còn lại theo chu kỳ (mỗi 2 giây).
+- Các server follower cập nhật `lastHeartBeat` khi nhận được tín hiệu từ leader.
+- Nếu một follower không nhận được heartbeat từ leader trong 5 giây, nó sẽ coi leader đã chết và khởi động quá trình bầu chọn leader mới.
+#### 2. Cách Thực Hiện
+- Leader gửi heartbeat: Gửi RPC `Heartbeat()` đến tất cả các follower. Nếu follower phản hồi, leader tiếp tục hoạt động bình thường. Nếu follower không phản hồi, leader ghi log lỗi nhưng vẫn tiếp tục gửi heartbeat.
 
-**Kết quả mong đợi**:
-- Các thao tác được đảm bảo **sequential consistency** nhờ **timestamp**.
-- Không xảy ra **race condition**.
-- Tất cả các **backup** đều nhận được dữ liệu theo đúng thứ tự.
+- Follower nhận heartbeat: Khi nhận được heartbeat, follower cập nhật giá trị lastHeartBeat của nó. Follower ghi nhận leaderID của leader hiện tại.
 
-## Xử lý lỗi
-
-1. **Nếu không kết nối được server**:
-   - Kiểm tra port có đang được sử dụng không.
-   - Đảm bảo **firewall** không chặn kết nối.
-
-2. **Nếu primary election không hoạt động**:
-   - Kiểm tra **log** của các server.
-   - Đảm bảo tất cả server có thể kết nối với nhau.
-
-3. **Nếu replication không hoạt động**:
-   - Kiểm tra kết nối mạng giữa các server.
-   - Xem **log** để tìm lỗi cụ thể.
-
-## Monitoring
-
-- **Server logs** sẽ hiển thị trạng thái của server (**Primary/Backup**).
-- **Election logs** cho biết quá trình bầu cử.
-- **Client logs** hiển thị kết quả của các thao tác **PUT/GET**.
-
-## Giới hạn
-
-- Chưa có **persistent storage**.
-- Chưa có cơ chế **recovery** khi toàn bộ hệ thống crash.
-- Chưa có cơ chế xử lý **partition tolerance** đầy đủ.
+- Phát hiện lỗi leader: Follower kiểm tra giá trị lastHeartBeat của mình mỗi 3 giây. Nếu không nhận được heartbeat trong 5 giây, follower sẽ kích hoạt quá trình bầu chọn leader mới (`thuật toán Bully`).
