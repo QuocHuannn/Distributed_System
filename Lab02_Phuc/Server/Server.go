@@ -40,12 +40,12 @@ func NewKV(id int, port string, peers []string) *KV {
 	//   go run main.go -id=2 -port=1235
 	//   go run main.go -id=1 -port=1234
 	// Then S3 starts as leader. If you kill S3, S2 can take over.
-	if id == 3 {
-		kv.IsPrimary = true
-		kv.leaderID = 3
-		kv.primaryAddr = "localhost:" + port
-		fmt.Printf("[S%d] I am primary!\n", id)
-	}
+	//if id == 3 {
+	//	kv.IsPrimary = true
+	//	kv.leaderID = 3
+	//	kv.primaryAddr = "localhost:" + port
+	//	fmt.Printf("[S%d] I am primary!\n", id)
+	//}
 
 	return kv
 }
