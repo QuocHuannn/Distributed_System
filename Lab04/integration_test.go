@@ -1,7 +1,7 @@
 package main
 
 import (
-	shared "Lab05/Shared"
+	shared "Lab04/Shared"
 	"encoding/json"
 	"fmt"
 	"log"
