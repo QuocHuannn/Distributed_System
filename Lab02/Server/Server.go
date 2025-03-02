@@ -1,15 +1,13 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"log"
 	"net"
 	"net/rpc"
 	"sync"
-	"time"
 
-	shared "Lab02/Shared"
+	kvs "Lab02/Shared"
 )
 
 type KV struct {
@@ -32,7 +30,7 @@ type ServerInfo struct {
 	StartTime time.Time // server start
 }
 
-func (kv *KV) Put(args *shared.PutArgs, reply *shared.PutReply) error {
+func (kv *KV) Put(args *kvs.PutArgs, reply *kvs.PutReply) error {
 	kv.mu.Lock()
 	defer kv.mu.Unlock()
 
@@ -55,23 +53,23 @@ func (kv *KV) Put(args *shared.PutArgs, reply *shared.PutReply) error {
 	return nil
 }
 
-func (kv *KV) Get(args *shared.GetArgs, reply *shared.GetReply) error {
+func (kv *KV) Get(args *kvs.GetArgs, reply *kvs.GetReply) error {
 	kv.mu.Lock()
 	defer kv.mu.Unlock()
 
 	val, ok := kv.data[args.Key]
 	if ok {
-		reply.Err = shared.OK
+		reply.Err = kvs.OK
 		reply.Value = val
 	} else {
-		reply.Err = shared.ErrNoKey
+		reply.Err = kvs.ErrNoKey
 		reply.Value = ""
 	}
 	return nil
 }
 
-func (kv *KV) syncToBackup(server shared.ServerInfo, key, value string, timestamp int64) {
-	client, err := rpc.Dial("tcp", server.Address)
+func getAvailablePort(preferredPort string) string {
+	listener, err := net.Listen("tcp", preferredPort)
 	if err != nil {
 		kv.mu.Lock()
 		defer kv.mu.Unlock()
@@ -170,9 +168,9 @@ func (kv *KV) HandleElection(msg *shared.ElectionMessage, reply *shared.PutReply
 	return nil
 }
 
-func (kv *KV) declareVictory() {
-	kv.myInfo.IsPrimary = true
-	kv.primary = &kv.myInfo
+func server() {
+	port := getAvailablePort(":1234")
+	fmt.Printf("[S] Using port %s\n", port)
 
 	for _, server := range kv.servers {
 		if server.ID != kv.myInfo.ID {
@@ -404,8 +402,9 @@ func main() {
 	rpc.Register(kv)
 	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", *port))
 	if err != nil {
-		log.Fatal("Listen error:", err)
+		log.Fatal("[S] Listen error:", err)
 	}
+	defer listener.Close()
 
 	log.Printf("Server %d starting on %s", *serverID, listener.Addr())
 	rpc.Accept(listener)
