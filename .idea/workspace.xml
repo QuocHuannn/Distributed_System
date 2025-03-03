@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567eefc8-ab3b-4aca-8c19-004a4a7975a5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab05/Client/Client.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab05/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab05/Server/Server.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab05/Shared/consistent_hash.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab05/Shared/consistent_hash_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab05/Shared/types.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab05/go.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab05/integration_test.go" beforeDir="false" />
-    </list>
+    <list default="true" id="567eefc8-ab3b-4aca-8c19-004a4a7975a5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +12,11 @@
   </component>
   <component name="GOROOT" url="file://$USER_HOME$/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.23.6.windows-amd64" />
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="phuc" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -102,6 +97,8 @@
         <item itemvalue="Go Test.integration_test.go (1)" />
         <item itemvalue="Go Test.integration_test.go" />
         <item itemvalue="Go Build.go build Server.go" />
+        <item itemvalue="Go Test.integration_test.go (1)" />
+        <item itemvalue="Go Test.integration_test.go" />
       </list>
     </recent_temporary>
   </component>
@@ -116,6 +113,29 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/Phuc" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
