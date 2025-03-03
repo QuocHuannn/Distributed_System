@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="567eefc8-ab3b-4aca-8c19-004a4a7975a5" name="Changes" comment="" />
+    <list default="true" id="567eefc8-ab3b-4aca-8c19-004a4a7975a5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Lab04/Client/Client.go" beforeDir="false" afterPath="$PROJECT_DIR$/Lab04_Huan/Client/Client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab04/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Lab04_Huan/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab04/Server/Server.go" beforeDir="false" afterPath="$PROJECT_DIR$/Lab04_Huan/Server/Server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab04/Shared/consistent_hash.go" beforeDir="false" afterPath="$PROJECT_DIR$/Lab04_Huan/Shared/consistent_hash.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab04/Shared/consistent_hash_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/Lab04_Huan/Shared/consistent_hash_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab04/Shared/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/Lab04_Huan/Shared/types.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab04/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/Lab04_Huan/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab04/integration_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/Lab04_Huan/integration_test.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
