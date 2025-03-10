@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="567eefc8-ab3b-4aca-8c19-004a4a7975a5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Lab04/Client/Client.go" beforeDir="false" afterPath="$PROJECT_DIR$/Lab04_Huan/Client/Client.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab04/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Lab04_Huan/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab04/Server/Server.go" beforeDir="false" afterPath="$PROJECT_DIR$/Lab04_Huan/Server/Server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab04/Shared/consistent_hash.go" beforeDir="false" afterPath="$PROJECT_DIR$/Lab04_Huan/Shared/consistent_hash.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab04/Shared/consistent_hash_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/Lab04_Huan/Shared/consistent_hash_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab04/Shared/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/Lab04_Huan/Shared/types.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab04/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/Lab04_Huan/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab04/integration_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/Lab04_Huan/integration_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +33,12 @@
     &quot;accountId&quot;: &quot;52682d9c-5566-4f1d-9632-59f667154570&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Lab05/Server/server.go" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 2
@@ -49,32 +48,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Go Build.go build Server.go.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.integration_test.go.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Huan&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/PC&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Go Build.go build Server.go.executor": "Run",
+    "Go Test.integration_test.go (2).executor": "Run",
+    "Go Test.integration_test.go.executor": "Run",
+    "Go Test.unit_test.go.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "Huan",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/PC",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.integration_test.go (1)">
+  <component name="RunManager" selected="Go Test.unit_test.go">
     <configuration name="go build Server.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Distributed_System" />
       <working_directory value="$PROJECT_DIR$" />
@@ -92,6 +94,16 @@
       <framework value="gotest" />
       <method v="2" />
     </configuration>
+    <configuration name="integration_test.go (2)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="Distributed_System" />
+      <working_directory value="$PROJECT_DIR$/Lab05/test" />
+      <root_directory value="$PROJECT_DIR$/Lab05" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/Lab05/test/integration_test.go" />
+      <framework value="gotest" />
+      <method v="2" />
+    </configuration>
     <configuration name="integration_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="Distributed_System" />
       <working_directory value="$PROJECT_DIR$/Lab05" />
@@ -101,13 +113,23 @@
       <framework value="gotest" />
       <method v="2" />
     </configuration>
+    <configuration name="unit_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="Distributed_System" />
+      <working_directory value="$PROJECT_DIR$/Lab05/test" />
+      <root_directory value="$PROJECT_DIR$/Lab05" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/Lab05/test/unit_test.go" />
+      <framework value="gotest" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.unit_test.go" />
+        <item itemvalue="Go Test.integration_test.go (2)" />
         <item itemvalue="Go Test.integration_test.go (1)" />
         <item itemvalue="Go Test.integration_test.go" />
         <item itemvalue="Go Build.go build Server.go" />
-        <item itemvalue="Go Test.integration_test.go (1)" />
-        <item itemvalue="Go Test.integration_test.go" />
       </list>
     </recent_temporary>
   </component>
