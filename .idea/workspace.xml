@@ -53,7 +53,9 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Go Build.go build Server.go.executor": "Run",
     "Go Test.integration_test.go (2).executor": "Run",
+    "Go Test.integration_test.go (3).executor": "Run",
     "Go Test.integration_test.go.executor": "Run",
+    "Go Test.unit_test.go (1).executor": "Run",
     "Go Test.unit_test.go.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -76,15 +78,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.unit_test.go">
-    <configuration name="go build Server.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="Distributed_System" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/Lab01/Server/Server.go" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Go Test.unit_test.go (1)">
     <configuration name="integration_test.go (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="Distributed_System" />
       <working_directory value="$PROJECT_DIR$/Lab04" />
@@ -104,12 +98,23 @@
       <framework value="gotest" />
       <method v="2" />
     </configuration>
-    <configuration name="integration_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="integration_test.go (3)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="Distributed_System" />
-      <working_directory value="$PROJECT_DIR$/Lab05" />
+      <working_directory value="$PROJECT_DIR$/Lab05/test" />
+      <root_directory value="$PROJECT_DIR$/Lab05" />
       <kind value="FILE" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/Lab05/integration_test.go" />
+      <filePath value="$PROJECT_DIR$/Lab05/test/integration_test.go" />
+      <framework value="gotest" />
+      <method v="2" />
+    </configuration>
+    <configuration name="unit_test.go (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="Distributed_System" />
+      <working_directory value="$PROJECT_DIR$/Lab05/test" />
+      <root_directory value="$PROJECT_DIR$/Lab05" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/Lab05/test/unit_test.go" />
       <framework value="gotest" />
       <method v="2" />
     </configuration>
@@ -125,11 +130,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.unit_test.go (1)" />
+        <item itemvalue="Go Test.integration_test.go (3)" />
         <item itemvalue="Go Test.unit_test.go" />
         <item itemvalue="Go Test.integration_test.go (2)" />
         <item itemvalue="Go Test.integration_test.go (1)" />
-        <item itemvalue="Go Test.integration_test.go" />
-        <item itemvalue="Go Build.go build Server.go" />
       </list>
     </recent_temporary>
   </component>
