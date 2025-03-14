@@ -1,4 +1,4 @@
-
+# Lab05: Cài đặt Distributed Transaction sử dụng 2-Phase-Commit
 ## Dependencies
 
 Dự án sử dụng các gói sau (xem chi tiết trong `go.mod`):
