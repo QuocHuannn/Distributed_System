@@ -30,6 +30,7 @@ func TransferMoney(client *MongoDBClient, fromUser string, toUser string, amount
 	transactionID := fmt.Sprintf("%d", time.Now().UnixNano())
 
 	// Bước 1: Kiểm tra điều kiện trước khi giao dịch
+	// Kiểm tra người gửi
 	var fromAccount bson.M
 	err := client.db1.Collection("accounts").FindOne(ctx, bson.M{"name": fromUser}).Decode(&fromAccount)
 	if err != nil {
@@ -38,6 +39,7 @@ func TransferMoney(client *MongoDBClient, fromUser string, toUser string, amount
 		}
 		return fmt.Errorf("lỗi kiểm tra người gửi: %v", err)
 	}
+	// kiểm tra số dư
 	balance, ok := fromAccount["balance"].(int32)
 	if !ok {
 		return fmt.Errorf("kiểu dữ liệu số dư của %s không hợp lệ", fromUser)
@@ -45,7 +47,7 @@ func TransferMoney(client *MongoDBClient, fromUser string, toUser string, amount
 	if balance < int32(amount) {
 		return fmt.Errorf("số dư của %s không đủ (%d < %d)", fromUser, balance, amount)
 	}
-
+	// kiểm tra người nhận
 	var toAccount bson.M
 	err = client.db2.Collection("accounts").FindOne(ctx, bson.M{"name": toUser}).Decode(&toAccount)
 	if err != nil {

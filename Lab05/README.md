@@ -1,4 +1,4 @@
-
+# Lab05: Cài đặt Distributed Transaction sử dụng 2-Phase-Commit
 ## Dependencies
 
 Dự án sử dụng các gói sau (xem chi tiết trong `go.mod`):
@@ -72,6 +72,14 @@ rs.initiate({
 - Kiểm tra trạng thái
 ```javascript
 rs.status()
+```
+- Tạo test data
+```javascript
+use bank1
+db.accounts.insertOne({ name: "Alice", balance: 1000 })
+
+use bank2
+db.accounts.insertOne({ name: "Bob", balance: 500 })
 ```
 - Đảm bảo thấy Primary (27017) và Secondary (27018) hoạt động.
 ### Bước 5: Cài đặt dependencies
